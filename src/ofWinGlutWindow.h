@@ -57,12 +57,6 @@ public:
 	void		disableSetupScreen();
 
 	void		setVerticalSync(bool enabled);
-
-	// WinGlutAdditions
-	int			getFrameNum();
-	float		getFrameRate();
-	double		getLastFrameTime();
-	void		setFrameRate(float targetRate);
 	
 	/**
 	register / unregister as touch/gesture screen

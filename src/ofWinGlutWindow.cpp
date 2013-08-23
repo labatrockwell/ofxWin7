@@ -45,15 +45,6 @@ static ofOrientation	orientation;
 static ofBaseApp *  ofAppPtr;
 
 // touch additions
-static float		timeNow, timeThen, fps;
-static int			nFramesForFPS;
-static int			nFrameCount;
-static bool			bFrameRateSet;
-static int 			millisForFrame;
-static int 			prevMillis;
-static int 			diffMillis;
-static float 		frameRate;
-static double		lastFrameTime;
 ofWinGestureEngine *  gestureEnginePtr;
 ofWinTouchEngine *     touchEnginePtr;
 
@@ -217,17 +208,6 @@ ofWinGlutWindow::ofWinGlutWindow(){
 	iconSet				= false;
 
 	// touch additions
-	timeNow				= 0;
-	timeThen			= 0;
-	fps					= 60.0; //give a realistic starting value - win32 issues
-	frameRate			= 60.0;
-	nFramesForFPS		= 0;
-	nFrameCount			= 0;
-	bFrameRateSet		= false;
-	millisForFrame		= 0;
-	prevMillis			= 0;
-	diffMillis			= 0;
-	lastFrameTime		= 0.0;
 	bUseGestures		= false;
 	bTouchSetup			= false;
 	gestureEnginePtr	= new ofWinGestureEngine(0);
@@ -432,21 +412,6 @@ void ofWinGlutWindow::setWindowTitle(string title){
 }
 
 //------------------------------------------------------------
-float ofWinGlutWindow::getFrameRate(){
-	return frameRate;
-}
-
-//------------------------------------------------------------
-double ofWinGlutWindow::getLastFrameTime(){
-	return lastFrameTime;
-}
-
-//------------------------------------------------------------
-int ofWinGlutWindow::getFrameNum(){
-	return nFrameCount;
-}
-
-//------------------------------------------------------------
 ofPoint ofWinGlutWindow::getWindowSize(){
 	return ofPoint(windowW, windowH,0);
 }
@@ -528,26 +493,6 @@ void ofWinGlutWindow::showCursor(){
 	#else
 		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 	#endif
-}
-
-//------------------------------------------------------------
-void ofWinGlutWindow::setFrameRate(float targetRate){
-	// given this FPS, what is the amount of millis per frame
-	// that should elapse?
-    
-	// --- > f / s
-    
-	if (targetRate == 0){
-		bFrameRateSet = false;
-		return;
-	}
-    
-	bFrameRateSet 			= true;
-	float durationOfFrame 	= 1.0f / (float)targetRate;
-	millisForFrame 			= (int)(1000.0f * durationOfFrame);
-    
-	frameRate				= targetRate;
-    
 }
 
 //------------------------------------------------------------
