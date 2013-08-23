@@ -1,5 +1,6 @@
 ofxWin7
 =======
+Compatible with openFrameworks 0.8.0
 
 Simple helper classes to setup Windows 7 touch in openFrameworks. Supports both Windows 7 touch events as well as a gestures. 
 
