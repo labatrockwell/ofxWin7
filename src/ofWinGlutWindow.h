@@ -1,3 +1,9 @@
+//
+//  ofWinGlutWindow.h
+//
+//  Created by Brett Renfer on 10/12/12.
+//	Updated by Momo the Monster on 08/22/13 (for openFrameworks 0.8.0 compatibility)
+
 #pragma once
 
 #ifndef _WIN32_WINNT
