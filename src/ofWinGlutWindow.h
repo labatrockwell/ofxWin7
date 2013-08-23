@@ -1,12 +1,3 @@
-//
-//  ofWinGlutWindow.h
-//  Blooms
-//
-//  Created by rockwell on 10/12/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
-
-
 #pragma once
 
 #ifndef _WIN32_WINNT
@@ -62,14 +53,26 @@ public:
 	
 	int			getWindowMode();
     
+	void		enableSetupScreen();
+	void		disableSetupScreen();
+
+	void		setVerticalSync(bool enabled);
+
+	// WinGlutAdditions
 	int			getFrameNum();
 	float		getFrameRate();
 	double		getLastFrameTime();
 	void		setFrameRate(float targetRate);
-    
-	void		enableSetupScreen();
-	void		disableSetupScreen();
-    
+	
+	/**
+	register / unregister as touch/gesture screen
+	@param useGestures false = touch, true = gesture
+	*/
+	void		setUseGestures( bool useGestures );
+
+private:
+	bool bUseGestures, bTouchSetup;
+
 	static void display(void);
 	static void mouse_cb(int button, int state, int x, int y);
 	static void motion_cb(int x, int y);
@@ -83,16 +86,12 @@ public:
 	static void entry_cb(int state);
 	static void dragEvent(char ** fileNames, int howManyFiles, int dragX, int dragY);
 	string displayString;
-	
-	
-	/**
-	register / unregister as touch/gesture screen
-	@param useGestures false = touch, true = gesture
-	*/
-	void		setUseGestures( bool useGestures );
 
-private:
-	bool bUseGestures, bTouchSetup;
+	bool iconSet;
+#ifdef TARGET_LINUX
+	void setWindowIcon(const string & path);
+	void setWindowIcon(const ofPixels & iconPixels);
+#endif
     
 };
 
